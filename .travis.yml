@@ -45,6 +45,8 @@ jobs:
           - set | grep "^updatedModuleVersions=" > build/env
           - set | grep "^SCALA_VER=" >> build/env
           - cat build/env
+        notifications:
+          webhooks: https://scala-ci.typesafe.com/benchq/webhooks/travis
 
       # this builds the spec using jekyll
       # based on http://www.paperplanes.de/2013/8/13/deploying-your-jekyll-blog-to-s3-with-travis-ci.html
@@ -106,6 +108,3 @@ before_cache:
   # Cleanup the cached directories to avoid unnecessary cache updates
   - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
   - find $HOME/.sbt        -name "*.lock"               -print -delete
-
-notifications:
-  webhooks: https://scala-ci.typesafe.com/benchq/webhooks/travis
